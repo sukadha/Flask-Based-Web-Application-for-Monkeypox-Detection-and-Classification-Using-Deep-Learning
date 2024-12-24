@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Detection Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+        }
+        .image-preview {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Disease Detection Result</h1>
+        {% if image_url %}
+            <img src="{{ image_url }}" alt="Uploaded Image" class="image-preview">
+        {% endif %}
+        <div class="result">
+            {% if disease_info.error %}
+                <p class="error">{{ disease_info.error }}</p>
+            {% else %}
+                <p><strong>Disease:</strong> {{ disease_info.disease }}</p>
+                <p><strong>Confidence:</strong> {{ disease_info.confidence }}</p>
+                <p><strong>Recommendation:</strong> {{ disease_info.recommendation }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
